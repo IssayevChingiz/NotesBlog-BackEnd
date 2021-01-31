@@ -15,12 +15,13 @@ app.use(cors());
 app.use("/posts", postRoutes);
 app.use("/users", userRoutes);
 
-const CONNECTION_URL =
-  process.env.MONGOURL;
 const PORT = process.env.PORT || 5000;
 
 mongoose
-  .connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.MONGOURL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() =>
     app.listen(PORT, () =>
       console.log(`Server Running on Port: http://localhost:${PORT}`)
